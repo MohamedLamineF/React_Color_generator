@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Button from "./Button";
+import "./App.css";
+import { contrastColor } from "contrast-color";
 
-function App() {
+const App = () => {
+  const RandomColor = () => {
+    return "#" + Math.random().toString(16).substr(-6);
+  };
+  const handleChangeBackGround = () => {
+    setScreenBg(RandomColor);
+  };
+
+  let [screenBg, setScreenBg] = useState(RandomColor);
+  let btnBg = contrastColor({ bgColor: screenBg });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="App"
+      style={{ backgroundColor: `${screenBg}`, height: "100%" }}
+    >
+      <div className="center">
+        <h2 className="colorName" style={{ color: `${btnBg}` }}>
+          {screenBg}
+        </h2>
+        <Button
+          onChangeBackGround={handleChangeBackGround}
+          screenBg={screenBg}
+          btnBg={btnBg}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
