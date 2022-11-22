@@ -5,7 +5,7 @@ import { contrastColor } from "contrast-color";
 
 const App = () => {
   const RandomColor = () => {
-    return "#" + Math.random().toString(16).substr(-6);
+    return "#" + Math.random().toString(16).substring(9,16);
   };
   const handleChangeBackGround = () => {
     setScreenBg(RandomColor);
